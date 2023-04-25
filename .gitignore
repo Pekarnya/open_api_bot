@@ -1,0 +1,5 @@
+# Ignore the env files
+*.env
+
+# ignore the MVP project
+MVP.py
