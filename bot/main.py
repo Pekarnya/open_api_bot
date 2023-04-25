@@ -3,14 +3,13 @@
 """
 
 import os
-import asyncio
+import random
 from aiogram import Bot, Dispatcher, types, executor
 from aiogram.dispatcher.filters import Command
 import aiohttp
 from dotenv import load_dotenv
 import requests
 from image_search import ImageSearch
-import random
 
 
 class AnimeBot:
@@ -48,7 +47,7 @@ class CommandHandler:
         self.dp.register_message_handler(self.start_command,
                                          Command(self.command_dict["start"],
                                                  ignore_case=True))
-        
+
         self.dp.register_message_handler(self.random_quote,
                                          Command(self.command_dict["random"],
                                                  ignore_case=True))
@@ -64,7 +63,7 @@ class CommandHandler:
             flickr_api = ImageSearch()
             img_urls = await flickr_api.search_image(session, query)
         return img_urls
-            
+
     @classmethod
     async def random_quote(self, message: types.Message):
         """
@@ -92,7 +91,7 @@ class CommandHandler:
                              {character} \n \
                              {quote} \n")
         await message.reply_photo(photo=img_url)
-        
+
 
 class MessageHandler:
     """
